@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: customer
+    description: "This model processes customer data."
+    columns:
+      - name: First_Name
+        description: "The first name of the customer."
+      - name: Last_Name
+        description: "The last name of the customer."
+      - name: Full_Name
+        description: "The full name of the customer."
+      - name: PersonEmail
+        description: "The email address of the customer."
+      - name: PersonGenderIdentity
+        description: "The gender identity of the customer."
+      - name: KYC_Done_Date
+        description: "The date when KYC was completed."
+      - name: Postal_Code
+        description: "The postal code of the customer's address."
+    description: "A model that creates the 'employees' table and inserts sample records."
+    columns:
+      - name: id
+        description: "The primary key for this."
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "The name of the employee."
+      - name: position
+        description: "The position or title of the employee."
+      - name: salary
+        description: "The salary of the employee."
+
+  - name: modified_asset
+    description: "This contains asset data ."
+    columns:
+      - name: id
+        description: "The primary key for this."
+      - name: lob_client_code
+        description: "lob_client_code"
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: public.asset
+              field: lob_client_code
+      - name: close_date
+        description: "deactivation_date"
+        tests:
+          - not_null
+      - name: lob
+        description: "lob"
+        tests:
+          - accepted_values:
+              values: ['DIGITAL']
